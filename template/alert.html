@@ -1,0 +1,54 @@
+<html>
+<style>
+body{
+display:grid;
+background:url({{url_for('static',filename='images/Table.jpeg')}});
+background-repeat:no-repeat;
+justify-content:center;
+align-items:center;
+background-size:600px 900px;
+}
+#container{
+    border:none;
+    background-color: transparent;
+    color:white;
+    justify-content:center;
+    align-items:center;
+    paddind:20px;
+    color:white;
+}
+#container th{
+color:red;
+}
+#container td{
+color:white;
+}
+#container h2{
+color:pink;
+}
+#container a{
+color:green;
+}
+#container ol li a{
+color:orange;
+}
+</style>
+<meta name="viewport" content="width=device-width">
+<body>
+<div id="container">
+<center><h1><font color="yellow">Student details</font></h1></center>
+<center><table border="1px">
+<tr>
+ <th> Name</th>
+ <th>Image</th>
+ </tr>
+  {% for s in image %}
+  <tr>
+  <td>{{s[0]}}</td>
+  <td>{{s[1]}}</td>
+  </tr>
+  {% endfor %}
+  </table>
+  </center
+</body>
+</html>

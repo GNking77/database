@@ -1,0 +1,41 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>student application</title>
+  <style>
+body{
+background-color:skyblue;
+display:grid;
+align-items:center;
+  }
+  input{
+    padding:10px;
+    margin:5px;
+    border:2px solid red;
+  }
+  input[type="submit"]{
+    background-color:green;
+    border:none;
+    border-radius:30px;
+    width:100px;
+  }
+    </style>
+</head>
+<body>
+ <center><h1><font color='red'>Adding data</font></h1><center>
+<center><form method="POST" action="/add">
+    <label>Name</label>
+    <input type="text" name="name" required/>
+    <br/>
+    <label>Rollno</label>
+    <input type="number" name="rollno" required/>
+    <br/>
+    <label>Course</label>
+    <input type="text" name="course" required/>
+    <br/>
+    <center><input type="submit" value="Register"></center>
+  </form></center>
+</body>
+</html>

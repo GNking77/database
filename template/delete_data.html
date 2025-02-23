@@ -1,0 +1,31 @@
+<html>
+<mata name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+body{
+display:grid;
+background-color:yellow;
+align-items:center;
+}
+  input{
+    padding:10px;
+    margin:5px;
+    border:2px solid red;
+  }
+  button{
+  background-color:green;
+  color:white;
+  border:none;
+  border-radius:30px;
+  width:100px;
+  }
+    </style>
+<body>
+<center><h1>Deleting data<h1></center>
+<center><form method="POST" action="/del">
+<label>Rollno</label>
+<input type="number" name="rollno" required/>
+<br><br>
+<button type="submit">Delete</button>
+</form></center>
+</body>
+</html>

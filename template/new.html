@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQLite Data Display</title>
+</head>
+<body>
+    <h1>Data Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in photo %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td><img src="{{ url_for('static',filename=row[2]) }}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

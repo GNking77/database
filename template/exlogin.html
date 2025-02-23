@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<style>
+label{
+color:white;
+}
+body{
+display:grid;
+background-repeat:no-repeat;
+background-size:600px 900px;
+justify-content:center;
+align-items:center;
+}
+#container{
+background-color:transparent;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+input{
+padding:10px;
+border:1px solid red;
+color:green;
+border-radius:30px;
+}
+button{
+height:40px;
+width:100px;
+border:none;
+border-radius:40px;
+background-image:url({{url_for('static',filename='images/button.jpg')}});
+background-size:cover;
+background-repeat:no-repeat;
+color:white;
+}
+</style>
+</head>
+<div id="container">
+<body background="{{url_for('static',filename='images/Login.jpeg')}}">
+<center><h1><font color="yellow">login page</font></h1></center>
+<form action="/login" method='POST' border="1px">
+<label>Email Id</label>
+<input type="email" name="email" required/>
+<br><br>
+<label>Password</label>
+<input type="password" name="passw" required/>
+<br><br><br>
+<center><button type="submit">Login</button></center>
+</form>
+</div>
+</body>
+</html>

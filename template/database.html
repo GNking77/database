@@ -1,0 +1,225 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='database.css')}}">
+    <script src="https://kit.fontawesome.com/dbf63de95c.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="container">
+        
+        <div class="left" id="left">
+            <div id="add">
+                <i id='cancel' class="fa-solid fa-xmark"></i>
+                <h1>Enter Details</h1>
+                    <form class="add-data" action="/Home" method="POST">
+                        <span><input type="text" name="name" id='name' placeholder="Name" required/></span>
+                        <span><input type="text" name="city" id="city" placeholder="City" required/></span>
+                        <span><input type="text" name="mobile" id="mobile" placeholder="Mobile Number" required/></span>
+                        <span><input type="text" name="blood" id='blood' placeholder="Blood Group" required/></span>
+                        <span  id="enter"><button class="add-btn">Enter</button></span>
+                    </form>
+            </div>
+            <div id="update">
+                <i id='u-cancel' class="fa-solid fa-xmark"></i>
+                <h1>Update Details</h1>
+                    <form class="add-data" action="/update" method="POST">
+                        <span><input type="text" name="name" id='name' placeholder="Name" required/></span>
+                        <span><input type="text" name="city" id="city" placeholder="City" required/></span>
+                        <span><input type="text" name="mobile" id="mobile" placeholder="Mobile Number" required/></span>
+                        <span><input type="text" name="blood" id='blood' placeholder="Blood Group" required/></span>
+                        <span><button class="add-btn">Update</button></span>
+                    </form>
+            </div>
+        </div>
+        <div class="right" id="right">
+            <h1>Young India Youth Association</h1>
+            <div class="header">
+                <div id="register">Register</div>
+            </div>
+            <table class="user" id="table">
+                <div id="context-menu">
+                    <div id="open">Open</div>
+                    <div id="edit">Edit</div>
+                    <div id="delete">Delete</div>
+                </div>
+                <tr class="head">
+                    <th>User Id</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Mobile Number</th>
+                    <th>Blood Group</th>
+                </tr>
+                
+                {% for d in data%}
+                <tr class="data">
+                    <td>{{d[0]}}</td>
+                    <td>{{d[1]}}</td>
+                    <td>{{d[2]}}</td>
+                    <td>{{d[3]}}</td>
+                    <td>{{d[4]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div id="confirm">
+                <p>Are sure you want to delete?</p>
+                <div class="button">
+                    <div id="yes">Yes</div>
+                    <div id="no">No</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let a = 1, first='',second='',active=''
+        var target = document.querySelectorAll('.data')
+        var menu = document.getElementById('context-menu')
+        var submit = document.getElementById('enter')
+        var register = document.getElementById('register')
+        var left = document.getElementById('left')
+        var right = document.getElementById('right')
+        var pop_up = document.getElementById('confirm')
+        var yes = document.getElementById('yes')
+        var no = document.getElementById('no')
+        window.addEventListener('contextmenu',function(e){
+            //e.preventDefault();
+            
+        });
+        register.addEventListener('click',()=>{
+            left.style.display = 'flex'
+            right.style.flexBasis = '70%'
+            list.style.width = '15%'
+            register.style.display = 'none'
+            add.style.display = 'flex'
+            update.style.display = 'none'
+        })
+        document.getElementById('cancel').addEventListener('click',() => {
+            register.style.display = 'inline-flex'
+            left.style.display = 'none'
+            right.style.flexBasis = '100%'
+            
+        })
+        document.getElementById('u-cancel').addEventListener('click',() => {
+            register.style.display = 'inline-flex'
+            left.style.display = 'none'
+            right.style.flexBasis = '100%'
+            
+        })
+        
+
+        document.addEventListener('DOMContentLoaded', function(){
+            target.forEach(data =>{
+                
+                data.addEventListener('click',()=>{
+                    
+                    if(a==1){
+                        first=data
+                        if(second!=''){
+                            second.classList.remove('second')
+                        }
+                        
+                        first.classList.add('first')
+                        a = 2
+                    }
+                    
+                    else if(a==2){
+                        second=data
+                        first.classList.remove('first')
+                        second.classList.add('second')
+                        a=1
+                    }
+                })
+                data.addEventListener('contextmenu',(e)=>{
+                    active = data
+                    if(a==1){
+                        first=data
+                        if(second!=''){
+                            second.classList.remove('second')
+                        }
+                        
+                        first.classList.add('first')
+                        a = 2
+                    }
+                    
+                    else if(a==2){
+                        second=data
+                        first.classList.remove('first')
+                        second.classList.add('second')
+                        a=1
+                    }
+                    
+                    menu.style.top = `${e.clientY - 10}px`
+                    menu.style.left = `${e.clientX - 55}px`
+                    menu.style.display= 'flex'
+                })
+                menu.addEventListener('mouseleave',()=>{
+                    menu.style.display= 'none';
+                    data.classList.remove('first')
+                    data.classList.remove('second')
+                })
+                Operation()
+            })
+        });
+        
+        function Operation(){
+            document.getElementById('open').addEventListener('click',()=>{
+                menu.style.display = 'none'
+                window.location.href = '/details'
+                id=active.cells[0].innerText 
+                data = { 'userid' : id }
+                fetch('/details', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({ userid: id })
+                })
+                .then(response => response.json())
+                .then(data => console.log("Response from Flask:", data))
+            })
+            document.getElementById('edit').addEventListener('click',()=>{
+                menu.style.display = 'none'
+                left.style.display = 'flex'
+                right.style.flexBasis = '70%'
+                document.getElementById('add').style.display = 'none'
+                document.getElementById('update').style.display = 'flex'
+                id=active.cells[0].innerText 
+                console.log(id)
+                data = { 'userid' : id }
+                fetch('/update', {
+                    method: 'POST',
+                    body: JSON.stringify({ 'userid': id })
+                })
+                document.getElementById('back').addEventListener('click', ()=>{
+                    left.style.display = 'none'
+                    right.style.flexBasis = '100%'
+                    document.getElementById('update').style.display = 'none'
+                })
+            })
+            document.getElementById('delete').addEventListener('click',()=>{
+                menu.style.display = 'none'
+                pop_up.style.display = 'flex'
+                yes.addEventListener('click',()=>{
+                    pop_up.style.display = 'none'
+                    register.style.display = 'flex'
+                    id=active.cells[0].innerText 
+                    console.log(id)
+                    data = { 'userid' : id }
+                    fetch('/delete', {
+                        method: 'POST',
+                        body: JSON.stringify({ 'userid': id })
+                    })
+                    window.location.href = '/delete'
+                })
+                no.addEventListener('click',()=>{
+                    pop_up.style.display = 'none'
+                })
+            })
+
+        }
+
+
+    </script>
+</body>
+</html>

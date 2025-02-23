@@ -1,0 +1,64 @@
+<html>
+<style>
+body{
+display:grid;
+background:green;
+background-repeat:no-repeat;
+justify-content:center;
+align-items:center;
+background-size:600px 900px;
+}
+#container{
+    border:none;
+    background-color: transparent;
+    color:white;
+    justify-content:center;
+    align-items:center;
+    paddind:20px;
+    color:white;
+}
+#container th{
+color:red;
+}
+#container td{
+color:white;
+}
+#container h2{
+color:pink;
+}
+#container a{
+color:green;
+}
+#container ol li a{
+color:orange;
+}
+</style>
+<meta name="viewport" content="width=device-width">
+<body>
+<div id="container">
+<center><h1><font color="yellow">Student Details</font></h1></center>
+<center><table border="1px">
+<tr>
+ <th>Student name</th>
+ <th>Roll no</th>
+ <th>Course</th>
+ </tr>
+ {% for s in student%}
+ <tr>
+ <td>{{s[0]}}</td>
+ <td>{{s[1]}}</td>
+ <td>{{s[2]}}</td>
+ </tr>
+ {% endfor %}
+  </table>
+  <ol type="1">
+  <li><a href="/add_student">Add Student</a></li><br>
+  <li><a href="/delete_student">Delete student</a></li><br>
+  <li><a href="/update_student">Update student</a></li><br>
+  <li><a href="/delete_all">Delete all details</a></li><br>
+  </ol> 
+  </center><br><br>
+  <center><h2>You want to <a href="/">Logout</a></h2></center>
+  </div>
+</body>
+</html>

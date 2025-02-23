@@ -1,0 +1,39 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>student application</title>
+  <style>
+body{
+display:grid;
+background-color:pink;
+align-items:center;
+  }
+  input{
+    padding:10px;
+    margin:5px;
+    border:2px solid red;
+  }
+  input[type="submit"]{
+    border:none;
+  }
+    </style>
+</head>
+<body>
+ <center><h1><font color='red'>Updata data</font></h1></center>
+<center><form method="POST" action="/updt">
+    <label>Rollno</label>
+    <input type="number" name="rollno" required/>
+    <br/>
+    <label>New_name</label>
+    <input type="text" name="new_name" required/>
+    <br/>
+    <label>New_course</label>
+    <input type="text" name="new_course" required/>
+    <br/>
+    <center><input type="submit" value="Update"></center>
+  </form>
+  </center>
+</body>
+</html>

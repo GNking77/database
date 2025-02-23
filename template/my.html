@@ -1,0 +1,65 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>student application</title>
+  <style>
+  ul li{
+    display:inline-block;
+    list-style:none;
+    padding:10px;
+    background-color:green;
+    border:2px solid red;
+    border-radius:50%;
+  }
+  input{
+    padding:10px;
+    margin:5px;
+    border:2px solid red;
+  }
+  input[type="submit"]{
+    background-color:green;
+    color:red;
+  }
+    </style>
+</head>
+<body>
+ <marquee direction='left'><h1><font color='red'>BSc students application</font></h1></marquee>
+  <ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Gallery</li>
+    <li>Contact</li>
+  </ul>
+ <center><table bgcolor="orange" border="1">
+  <tr>
+  <th>Student name</th>
+  <th>RollNo</th>
+  <th>Course</th>
+  </tr>
+    {% for s in student %}
+    <tr>
+      <td>{{s[0]}}</td>
+      <td>{{s[1]}}</td>
+      <td>{{s[2]}}</td>
+    </tr>
+    {% endfor %}
+  </table></center>
+<form method="POST" action="/">
+    <label>Name</label>
+    <input type="text" name="name" required/>
+    <br/>
+    <label>Rollno</label>
+    <input type="number" name="rollno" required/>
+    <br/>
+    <label>Course</label>
+    <input type="text" name="course" required/>
+    <br/>
+    <center><input type="submit" value="Register"></center>
+  </form>
+  <div class="center">
+ <center><button onclick="window.print()">Print</button></center>
+  </div>
+</body>
+</html>
